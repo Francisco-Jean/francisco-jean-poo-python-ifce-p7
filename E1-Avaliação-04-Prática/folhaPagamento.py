@@ -21,6 +21,8 @@ class FolhaPagamento():
                 self._totalProvento += x.getValor()
             elif x.getTipomovimento() == 'D':
                 self._totalDesconto += x.getValor()
+            else:
+                print('\033[1;31m' + f'\nWARNING: ALGUM MOVIMENTO CRIADO TEM UM TIPO INVÁLIDO' + '\033[0;0m')
 
             cdAnterior = x.getColaborador().getCodigo()
     

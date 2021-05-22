@@ -25,8 +25,8 @@ class Colaborador():
                 self._totalDescontos += x.getValor()
                 valorLiquido -= x.getValor()
             else:
-                print(f'WARNING: ALGUM MOVIMENTO CRIADO TEM UM TIPO INVÁLIDO')
-
+                print('\033[1;31m' + f'\nWARNING: ALGUM MOVIMENTO CRIADO TEM UM TIPO INVÁLIDO' + '\033[0;0m')
+        
         return f'\nCódigo: {self.getCodigo()} Nome: {self.getNome()}\
                  \nSalário: {self.getSalario()} Total de Proventos: {self.getProventos()} Total de Descontos: {self.getDescontos()}\
                  \nValor Líquido: {valorLiquido + self.getSalario()}\n'
