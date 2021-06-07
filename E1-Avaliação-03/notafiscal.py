@@ -38,7 +38,21 @@ class NotaFiscal():
             valor = valor + item._valorItem
         self.valorNota=valor
      
-    def imprimirNotaFiscal(self, nota):       
-        print('---------------------------------------------------------------------------------------------------------------')
+    def imprimirNotaFiscal(self):
+        def line():
+            return '\n---------------------------------------------------------------------------------------------------------------'       
+        print(line())
+        print('NOTA FISCAL {:>99s}'.format(str(self._data)))
+        print('Cliente: ' + str(self._cliente._id) + '      Nome: ' + self._cliente._nome)
+        print('CPF/CNPJ: ' + self._cliente._cnpjcpf + line())
+        print('ITENS' + line() + '\n{:<15s}{:<40s}{:<15s}{:<32s}{:<10s}'. format('Sequência','Descrição','Quantidade','Valor Unitário', 'Preço'))
+        print('------------   -------------------------------------   ------------   -------------------------   -------------')
+        total = 0
+        for x in self._itens:
+            print('\n{:<15s}{:<40s}{:<15s}{:<32s}{:<10s}'. format(str(x._sequencial), x._descricao,str(x._quantidade),str(x._valorUnitario),str(x._valorItem)))
+            total += x._valorItem
+        print(line())  
+        print('Valor Total: ' + str(total) + '\n')
+
 
     
