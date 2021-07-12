@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ super ()}} - Adicionar{% endblock %}
+
+{% block content %}
+
+<h1>Adicionar cliente</h1>
+<form action="" method="POST">
+    <div class="form-floating">
+        <label for="floatingInput">Nome:</label>
+        <input type="text" class="form-control" id="floatingInput" placeholder="Insira seu nome:" name="nome">
+    </div>
+    <div class="form-floating">
+        <label for="floatingPassword">CPF/CNPJ:</label>
+        <input type="text" class="form-control" id="floatingPassword" placeholder="Insira seu CPF/CNPJ:" name="cpfcnpj">
+    </div>
+    <div class="form-floating">
+        <label for="floatingPassword">Escolha 1 para Pessoa Física e 2 para Jurídica:</label>
+        <input type="number" class="form-control" id="floatingInput" placeholder="Digite 1 para P.Física e 2 para P.Jurídica:" name="fisijurid">
+    </div>
+    <button class="w-100 btn btn-lg btn-primary" type="submit">Enviar</button>
+</form>
+
+{% endblock %}

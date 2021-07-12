@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ super ()}}  - Visualizar{% endblock %}
+
+{% block content %}
+
+<h1>Visualizar</h1>
+<div>
+    <ul>
+    {% for cliente in clientes %}
+        <li>{{ cliente.get_usuarioID() }} | {{ cliente.get_nomeUsuario() }} | {{ cliente.get_cnpfcpfUsuario() }} | {{ cliente.get_usuarioCodigo() }} | {{ cliente.get_tipoUsuario() }}</li>
+    {% endfor %}
+    </ul>
+</div>
+
+{% endblock %}
