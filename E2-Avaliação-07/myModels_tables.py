@@ -1,5 +1,5 @@
 import datetime
-from app import db
+from sql_configd import db
 
 class Cliente(db.Model):
     __tablename__ = 'CLIENTE'
