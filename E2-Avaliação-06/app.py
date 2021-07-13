@@ -1,28 +1,31 @@
 from flask import Flask, Response, request
+from modelos import *
 import json
-from models import Cliente, Produto, ItemNotaFiscal, NotaFiscal
+
 
 
 app = Flask(__name__)
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = True
 
-listadeclientes = [
-    Cliente(1, 'Nathalia', 1000, '4002892200', 'P. Física'),
-    Cliente(2, 'Robert', 2000, '3334442220', 'P. Jurídica'),
-    Cliente(3, 'Ricardo', 3000, '0119574231', 'P.Física')
-]
+
 
 listadeprodutos = [
-    Produto(1, 10, 'Blusas', 15.50),
-    Produto(2, 20, 'Caixa de som', 100.00),
-    Produto(3, 30, 'Moletom', 250.00),
-    Produto(4, 40, 'Camisa', 200.00)
+    Produto(1, 580, 'remedio', 150.00),
+    Produto(2, 570, 'laranja', 20.00),
+    Produto(3, 560, 'pêra', 30.00),
+    Produto(4, 550, 'chocolate', 12.00)
 ]
 
 listadeitens = [
     ItemNotaFiscal(1, 1, 5, listadeprodutos[0].to_json()),
     ItemNotaFiscal(2, 2, 5, listadeprodutos[1].to_json()),
     ItemNotaFiscal(3, 3, 10, listadeprodutos[2].to_json())
+]
+
+listadeclientes = [
+    Cliente(3, 'Raissa', 1000, '42545218515', 'P. Jurídica'),
+    Cliente(2, 'Elena', 2000, '444444514452', 'P. Jurídica'),
+    Cliente(1, 'Janaina', 3000, '79613264987', 'P.Física')
 ]
 
 listadenotas = [
@@ -37,15 +40,7 @@ listadenotas[1].adicionar_item(listadeitens[2].to_json())
 listadenotas[1].calcular_total_nota()
 
 
-@app.route("/clientes", methods=["GET"])
-def seleciona_clientes():
-    clientes_json = []
-    for cliente in listadeclientes:
-        clientes_json.append(cliente.to_json())
-
-    return gera_response(200, "clientes", clientes_json)
-
-@app.route("/cliente/<id>", methods=["GET"])
+@app.route("/cliente/<id>", methods=["POST"])
 def seleciona_cliente(id):
     for cliente in listadeclientes:
         if str(cliente.id) == str(id):
@@ -53,6 +48,8 @@ def seleciona_cliente(id):
             cliente_json = cliente_objeto.to_json()
 
             return gera_response(200, "cliente", cliente_json)
+
+
 
 
 @app.route("/cliente", methods=["POST"])
@@ -68,6 +65,8 @@ def cria_cliente():
     except Exception as e:
         print('Erro', e)
         return gera_response(400, "cliente", {}, "Erro ao cadastrar")
+
+
 
 
 @app.route("/cliente/<id>", methods=["PUT"])
@@ -95,6 +94,18 @@ def atualiza_cliente(id):
     except Exception as e:
         print('Erro', e)
         return gera_response(400, "cliente", {}, "Erro ao atualizar")
+
+
+
+
+@app.route("/clientes", methods=["GET"])
+def seleciona_clientes():
+    clientes_json = []
+    for cliente in listadeclientes:
+        clientes_json.append(cliente.to_json())
+
+    return gera_response(200, "clientes", clientes_json)
+
 
 
 @app.route("/cliente/<id>", methods=["DELETE"])
