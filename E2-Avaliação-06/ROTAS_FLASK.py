@@ -40,7 +40,7 @@ listadenotas[1].adicionar_item(listadeitens[2].to_json())
 listadenotas[1].calcular_total_nota()
 
 
-@app.route("/cliente/<id>", methods=["POST"])
+@app.route("api/cliente/<id>", methods=["POST"])
 def seleciona_cliente(id):
     for cliente in listadeclientes:
         if str(cliente.id) == str(id):
