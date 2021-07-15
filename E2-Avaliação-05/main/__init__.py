@@ -1,9 +1,9 @@
 from flask import Flask, request, url_for, redirect, render_template, flash
-from app.models.tables import Cliente
+from main.models.tables import Cliente
 
 
 app = Flask(__name__)
-app.config.from_object('config')
+
 
 idGeralCliente = 8
 codigoGeralCliente = 136
@@ -22,7 +22,7 @@ def deletar(cliente):
 
 
 
-clientes = [Cliente(1, 'Daniela', 17, '200.100.345-34', 'P.Física'),
+clientes = [Cliente(1, 'Jean', 17, '111.222.333-44', 'P.Física'),
             Cliente(2, 'Jonas', 34, '200.100.345-35', 'P.Física'),
             Cliente(3, 'Rei pele', 51, '200.100.345-37', 'P.Jurídica'),
             Cliente(4, 'Joao prdero', 68, '200.100.345-38', 'P.Física'),
@@ -60,7 +60,7 @@ def create():
 
 @app.route("/read")
 def read():
-    return render_template('visul.html', clientes=clientes)
+    return [clientes[0].get_nomeUsuario(), clientes[0].get_cnpfcpfUsuario, clientes[0].get_tipoUsuario]
 
 
 @app.route("/update", methods=['GET', 'POST'])
